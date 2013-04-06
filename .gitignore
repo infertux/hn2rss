@@ -1,0 +1,5 @@
+*.swp
+/.rbx/
+/Gemfile.lock
+/coverage
+/site
