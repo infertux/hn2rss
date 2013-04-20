@@ -2,4 +2,5 @@
 /.rbx/
 /Gemfile.lock
 /coverage
+/deploy.sh
 /site
