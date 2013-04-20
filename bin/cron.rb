@@ -24,8 +24,6 @@ list = ""
   "<td>about #{rss.average}</td>" <<
   "</tr>"
 
-  puts points
-
 end
 
 template = File.open(File.expand_path("../../site/index.template.html", __FILE__), 'r').read
