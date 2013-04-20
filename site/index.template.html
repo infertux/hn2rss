@@ -1,5 +1,71 @@
-<table>
-<tr><th>Description</th><th>Feed</th><th>Average</th></tr>
-<!-- LIST -->
-</table>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>HN2RSS</title>
+        <meta name="description" content="Hacker News via RSS feeds">
+        <meta name="viewport" content="width=device-width">
+
+        <style>
+            body {
+                text-align: center;
+                color: #828282;
+            }
+            table {
+                font-family: Arial, Helvetica, sans-serif;
+                color: #666;
+                background: #f6f6ef;
+                font-size: .8em;
+                text-shadow: 1px 1px 0px #fff;
+                margin: 20px auto;
+                border: #ccc 1px solid;
+                border-radius: 3px;
+            }
+            table a {
+                color: #666;
+                font-weight: bold;
+                text-decoration: none;
+            }
+            table a:active, table a:hover {
+                color: #bd5a35;
+                text-decoration: underline;
+            }
+            table th {
+                padding: 20px;
+                background: #f60;
+                background: -webkit-gradient(linear, left top, left bottom, from(#f60), to(#ebebeb));
+                background: -moz-linear-gradient(top,  #f60,  #ebebeb);
+            }
+            table td {
+                padding: 14px;
+                border: 1px solid #ffffff;
+                background: #fafafa;
+                background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+                background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+            }
+            table tr:hover td {
+                background: #f2f2f2;
+                background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#eee));
+                background: -moz-linear-gradient(top,  #f2f2f2,  #eee);
+            }
+            footer * {
+                font-size: small;
+                color: #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <p>Hello world! This is <em>Hacker News</em> delivered to you via RSS feeds.</p>
+
+        <table>
+            <tr><th>Feed</th><th>Description</th><th>Traffic</th></tr>
+            <!-- LIST -->
+        </table>
+
+        <footer>
+            <p>Powered by <a href="https://github.com/infertux/hn2rss">HN2RSS</a>.</p>
+        </footer>
+    </body>
+</html>
 
