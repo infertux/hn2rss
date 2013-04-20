@@ -18,9 +18,11 @@ list = ""
   rss = HN2RSS::RSS.new news
   rss.dump!
 
-  list << "<tr><td>#{rss.description}</td>" <<
+  list << "<tr>" <<
   "<td><a href=\"#{rss.link}\">#{rss.title}</a></td>" <<
-  "<td>about #{rss.average}</td></tr>"
+  "<td>#{rss.description}</td>" <<
+  "<td>about #{rss.average}</td>" <<
+  "</tr>"
 
   puts points
 

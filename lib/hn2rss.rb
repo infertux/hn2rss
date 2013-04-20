@@ -37,19 +37,26 @@ module HN2RSS
 
     def rss
       ::RSS::Maker.make("atom") do |rss|
-        rss.channel.about       = link
+        rss.channel.about       = about
+        rss.channel.link        = about
         rss.channel.title       = title
         rss.channel.description = description
-        rss.channel.updated     = Time.now.to_s
         rss.channel.author      = "HN2RSS"
+        rss.channel.date        = Time.now
+
+        # XXX ugly hack to be W3C compliant
+        raise unless rss.channel.instance_variable_get("@links").count == 1
+        rss.channel.instance_variable_get("@links").first.rel = 'self'
 
         @news.each do |news|
           news = news['item']
           rss.items.new_item do |item|
-            item.title       = news['title']
-            item.link        = news['url'] || ""
-            item.description = "#{news['points']} points"
-            item.updated     = news['create_ts']
+            item.link  = news['url'] || hn_link('item', news['id'])
+            item.date  = news['create_ts']
+            item.title = news['title']
+            item.description = text news
+            # XXX ugly hack to set description type to HTML
+            item.instance_variable_get("@description").type = 'html'
           end
         end
       end.to_s
@@ -78,7 +85,11 @@ module HN2RSS
     end
 
     def link
-      "http://labs.infertux.com/hn2rss/#{HN2RSS.minimum_points}.atom"
+      "http://labs.infertux.com/hn2rss/"
+    end
+
+    def about
+      "#{link}#{HN2RSS.minimum_points}.atom"
     end
 
     def title
@@ -90,6 +101,24 @@ module HN2RSS
     end
 
   private
+
+    def text news
+      item_link = hn_link 'item', news['id']
+      user_link = hn_link 'user', news['username']
+
+      <<-TEXT
+        <li>Discussion thread: <a href="#{item_link}">#{item_link}</a>
+        <li>Points: #{news['points']}
+        <li>Comments: #{news['num_comments']}
+        <li>HN poster: <a href="#{user_link}">#{news['username']}</a>
+
+        <p>#{news['text']}</p>
+      TEXT
+    end
+
+    def hn_link resource, id
+      "https://news.ycombinator.com/#{resource}?id=#{id}"
+    end
 
     def count
       @news.count
