@@ -37,8 +37,8 @@ module HN2RSS
 
     def rss
       ::RSS::Maker.make("atom") do |rss|
-        rss.channel.about       = about
-        rss.channel.link        = about
+        rss.channel.about       = link
+        rss.channel.link        = link
         rss.channel.title       = title
         rss.channel.description = description
         rss.channel.author      = "HN2RSS"
@@ -85,11 +85,7 @@ module HN2RSS
     end
 
     def link
-      "http://labs.infertux.com/hn2rss/"
-    end
-
-    def about
-      "#{link}#{HN2RSS.minimum_points}.atom"
+      "http://labs.infertux.com/hn2rss/#{HN2RSS.minimum_points}.atom"
     end
 
     def title

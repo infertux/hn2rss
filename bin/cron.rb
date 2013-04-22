@@ -19,7 +19,7 @@ list = ""
   rss.dump!
 
   list << "<tr>" <<
-  "<td><a href=\"#{rss.about}\">#{rss.title}</a></td>" <<
+  "<td><a href=\"#{rss.link}\">#{rss.title}</a></td>" <<
   "<td>#{rss.description}</td>" <<
   "<td>about #{rss.average}</td>" <<
   "</tr>"
