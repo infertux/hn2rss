@@ -53,7 +53,13 @@ module HN2RSS
           rss.items.new_item do |item|
             item.link  = news['url'] || hn_link('item', news['id'])
             item.date  = news['create_ts']
-            item.title = news['title']
+
+            item.title = if news['title']
+              news['title']
+            else
+              news['text'][0..50] << "..."
+            end
+
             item.description = text news
             # XXX ugly hack to set description type to HTML
             item.instance_variable_get("@description").type = 'html'
